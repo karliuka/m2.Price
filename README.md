@@ -1,19 +1,19 @@
 # Magento2 Rounding Price
 Rounding Price to Prettier Value for Multi-Currency Stores.
 
-Base prices - US Dollar
+### Base prices - US Dollar
 <img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/base.png" style="width:100%"/>
-Store prices - Euro
+### Store prices - Euro
 <img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/store.png" style="width:100%"/>
-Store rounding prices - Round fractions down, precision is 0
-<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-0" style="width:100%"/>
-Store rounding prices - Round fractions down, precision is -1
-<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-1" style="width:100%"/>
-Store rounding prices - Round fractions down, precision is -1 and enabled Subtract Amount
-<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-s" style="width:100%"/>
-Store rounding prices - Round fractions down, precision is -1 and enabled Subtract Amount(negative)
-<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-sn" style="width:100%"/>
-Configuration
+### Store rounding prices - Round fractions down, precision is 0
+<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-0.png" style="width:100%"/>
+### Store rounding prices - Round fractions down, precision is -1
+<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-1.png" style="width:100%"/>
+### Store rounding prices - Round fractions down, precision is -1 and enabled Subtract Amount
+<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-s.png" style="width:100%"/>
+### Store rounding prices - Round fractions down, precision is -1 and enabled Subtract Amount(negative)
+<img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/floor-sn.png" style="width:100%"/>
+### Configuration
 <img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/config.png" style="width:100%"/>
 ## Install with Composer as you go
 
