@@ -30,6 +30,16 @@ class Data
 	extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
+     * Check Round Price Convert functionality should be enabled
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->scopeConfig->getValue('currency/price/enabled', ScopeInterface::SCOPE_STORE);
+    }
+	
+    /**
      * Check Subtract 0.01 functionality should be enabled
      *
      * @return bool
@@ -58,5 +68,15 @@ class Data
     {
         $amount = $this->scopeConfig->getValue('currency/price/amount', ScopeInterface::SCOPE_STORE);
 		return (is_numeric($amount)) ? $amount : 0;
-    }		
+    }
+	
+    /**
+     * Retrieve precision
+     *
+     * @return int
+     */
+    public function getPrecision()
+    {
+        return (int)$this->scopeConfig->getValue('currency/price/precision', ScopeInterface::SCOPE_STORE);
+    }	
 }

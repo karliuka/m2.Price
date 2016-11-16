@@ -23,15 +23,19 @@ namespace Faonni\Price\Model\Config\Source;
 
 use Faonni\Price\Model\Plugin\Currency;
 
+/**
+ * Source of option values in a form of value-label pairs
+ */
 class Type implements \Magento\Framework\Option\ArrayInterface
 {
     /**
-     * {@inheritdoc}
+     * Return array of options as value-label pairs
+     *
+     * @return array
      */
     public function toOptionArray()
     {
         return [
-			['value' => Currency::TYPE_ROUND, 'label' => __('Standart')], 
 			['value' => Currency::TYPE_CEIL,  'label' => __('Round fractions up')],
 			['value' => Currency::TYPE_FLOOR, 'label' => __('Round fractions down')]
 		];

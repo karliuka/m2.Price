@@ -27,7 +27,8 @@
         <currency>
             <price>
                 <enabled>1</enabled>
-                <type>round</type>
+                <type>floor</type>
+				<precision>0</precision>
                 <subtract>1</subtract>
 				<amount>0.01</amount>
             </price>
