@@ -22,52 +22,94 @@
 namespace Faonni\Price\Helper;
 
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
 
 /**
  * Faonni Price data helper
  */
-class Data 
-	extends \Magento\Framework\App\Helper\AbstractHelper
+class Data extends AbstractHelper
 {
     /**
-     * Check Round Price Convert functionality should be enabled
+     * Enabled config path
+     */
+    const XML_ROUND_ENABLED = 'currency/price/enabled';
+    
+    /**
+     * Subtract config path
+     */
+    const XML_ROUND_SUBTRACT = 'currency/price/subtract';    
+    
+    /**
+     * Rounding base price config path
+     */
+    const XML_ROUND_BASE_PRICE = 'currency/price/base_price';  
+     
+    /**
+     * Rounding type config path
+     */
+    const XML_ROUND_TYPE = 'currency/price/type';  
+      
+    /**
+     * Rounding subtract amount config path
+     */
+    const XML_ROUND_AMOUNT = 'currency/price/amount';  
+      
+    /**
+     * Rounding precision config path
+     */
+    const XML_ROUND_PRECISION = 'currency/price/precision';  
+                  	
+    /**
+     * Check round price convert functionality should be enabled
      *
      * @return bool
      */
     public function isEnabled()
     {
-        return $this->scopeConfig->getValue('currency/price/enabled', ScopeInterface::SCOPE_STORE);
+        return $this->_getConfig(self::XML_ROUND_ENABLED);
     }
 	
     /**
-     * Check Subtract 0.01 functionality should be enabled
+     * Check subtract 0.01 functionality should be enabled
      *
      * @return bool
      */
     public function isSubtract()
     {
-        return $this->scopeConfig->getValue('currency/price/subtract', ScopeInterface::SCOPE_STORE);
+        return $this->_getConfig(self::XML_ROUND_SUBTRACT);
     }
+    
+    /**
+     * Check rounding base price
+     *
+     * @return string
+     */
+    public function isRoundingBasePrice()
+    {
+        return $this->_getConfig(self::XML_ROUND_BASE_PRICE);
+    }    
 	
     /**
-     * Retrieve Rounding Type
+     * Retrieve rounding type
      *
      * @return string
      */
     public function getRoundType()
     {
-        return $this->scopeConfig->getValue('currency/price/type', ScopeInterface::SCOPE_STORE);
+        return $this->_getConfig(self::XML_ROUND_TYPE);
     }
 	
     /**
-     * Retrieve Subtract Amount
+     * Retrieve subtract amount
      *
      * @return string
      */
     public function getAmount()
     {
-        $amount = $this->scopeConfig->getValue('currency/price/amount', ScopeInterface::SCOPE_STORE);
-		return (is_numeric($amount)) ? $amount : 0;
+        $amount = $this->_getConfig(self::XML_ROUND_AMOUNT);
+		return is_numeric($amount) 
+			? $amount 
+			: 0;
     }
 	
     /**
@@ -77,6 +119,21 @@ class Data
      */
     public function getPrecision()
     {
-        return (int)$this->scopeConfig->getValue('currency/price/precision', ScopeInterface::SCOPE_STORE);
-    }	
+        return (int)$this->_getConfig(self::XML_ROUND_PRECISION);
+    }
+    
+    /**
+     * Retrieve store configuration data
+     *
+     * @param string $path
+     * @return string|null|bool
+     */
+    protected function _getConfig($path)
+    {
+        return $this->scopeConfig
+			->getValue(
+				$path, 
+				ScopeInterface::SCOPE_STORE
+			);
+    }       	
 }

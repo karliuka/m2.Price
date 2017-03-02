@@ -68,10 +68,18 @@ class Currency
     {
         $price = $proceed($price, $toCurrency);
 		
-		if (!$this->_helper->isEnabled() || is_null($toCurrency) || $this->getCurrencyCode($toCurrency) == $subject->getCode()) {
+		if (!$this->_helper->isEnabled()) {
 			return $price;
 		}
 
+		if (!$this->_helper->isRoundingBasePrice()) {
+			if (is_null($toCurrency) || 
+				$this->getCurrencyCode($toCurrency) == $subject->getCode()
+			) {
+				return $price;
+			}
+		}
+		
 		switch ($this->_helper->getRoundType()) {
 			case self::TYPE_CEIL:
 				$price = round($price, $this->_helper->getPrecision(), PHP_ROUND_HALF_UP);

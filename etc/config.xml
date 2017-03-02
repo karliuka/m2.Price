@@ -27,6 +27,7 @@
         <currency>
             <price>
                 <enabled>1</enabled>
+                <base_price>0</base_price>
                 <type>floor</type>
 				<precision>0</precision>
                 <subtract>1</subtract>
