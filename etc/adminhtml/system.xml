@@ -35,23 +35,38 @@
                     <label>Rounding Base Price</label>
                     <comment><![CDATA[When using Base Price on Storefront.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field>                
                 <field id="type" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Rounding Type</label>
                     <comment><![CDATA[Round fractions up or Round fractions down.]]></comment>
                     <source_model>Faonni\Price\Model\Config\Source\Type</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field> 
                 <field id="precision" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Precision</label>
 					<comment><![CDATA[The optional number of decimal digits to round to.]]></comment>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field> 				
                 <field id="subtract" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Subtract Amount</label>
                     <comment><![CDATA[Subtract Amount from the Result.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field>
                 <field id="amount" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Amount</label>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field>                                
             </group>
         </section>
