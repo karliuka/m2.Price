@@ -58,7 +58,22 @@ class Data extends AbstractHelper
      * Rounding precision config path
      */
     const XML_ROUND_PRECISION = 'currency/price/precision';  
-                  	
+      
+    /**
+     * Show decimal zeros config path
+     */
+    const XML_DECIMAL_ZERO = 'currency/price/show_decimal_zero';
+         
+    /**
+     * Replace zero price config path
+     */
+    const XML_ZERO_PRICE = 'currency/price/replace_zero_price';
+         
+    /**
+     * Text of replace config path
+     */
+    const XML_ZERO_PRICE_TEXT = 'currency/price/zero_price_text'; 
+                              	
     /**
      * Check round price convert functionality should be enabled
      *
@@ -79,6 +94,26 @@ class Data extends AbstractHelper
         return $this->_getConfig(self::XML_ROUND_SUBTRACT);
     }
     
+    /**
+     * Check decimal zero functionality should be enabled
+     *
+     * @return bool
+     */
+    public function isShowDecimalZero()
+    {
+        return $this->_getConfig(self::XML_DECIMAL_ZERO);
+    }
+    
+    /**
+     * Check replace zero price functionality should be enabled
+     *
+     * @return bool
+     */
+    public function isReplaceZeroPrice()
+    {
+        return $this->_getConfig(self::XML_ZERO_PRICE);
+    }
+            
     /**
      * Check rounding base price
      *
@@ -121,7 +156,17 @@ class Data extends AbstractHelper
     {
         return (int)$this->_getConfig(self::XML_ROUND_PRECISION);
     }
-    
+	
+    /**
+     * Retrieve text of replace
+     *
+     * @return string
+     */
+    public function getZeroPriceText()
+    {
+        return $this->_getConfig(self::XML_ZERO_PRICE_TEXT);
+    }
+        
     /**
      * Retrieve store configuration data
      *

@@ -67,7 +67,22 @@
 					<depends>
 						<field id="enabled">1</field>
 					</depends>					
-                </field>                                
+                </field>
+                <field id="show_decimal_zero" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show decimal zeros</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>				
+                </field>
+                <field id="replace_zero_price" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Replace zero price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>				
+                </field>
+                <field id="zero_price_text" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text of replace</label>
+                    <comment><![CDATA[Text instead of zero price.]]></comment>
+					<depends>
+						<field id="replace_zero_price">1</field>
+					</depends>					
+                </field>                
             </group>
         </section>
     </system>

@@ -21,12 +21,13 @@
  */
 namespace Faonni\Price\Model\Config\Source;
 
+use Magento\Framework\Option\ArrayInterface;
 use Faonni\Price\Model\Plugin\Currency;
 
 /**
  * Source of option values in a form of value-label pairs
  */
-class Type implements \Magento\Framework\Option\ArrayInterface
+class Type implements ArrayInterface
 {
     /**
      * Return array of options as value-label pairs

@@ -32,6 +32,9 @@
 				<precision>0</precision>
                 <subtract>1</subtract>
 				<amount>0.01</amount>
+				<show_decimal_zero>1</show_decimal_zero>
+				<replace_zero_price>0</replace_zero_price>
+				<zero_price_text>free</zero_price_text>
             </price>
         </currency>
     </default>

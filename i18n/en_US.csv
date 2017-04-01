@@ -12,3 +12,7 @@
 "Round fractions up or Round fractions down.","Round fractions up or Round fractions down."
 "The optional number of decimal digits to round to.","The optional number of decimal digits to round to."
 "Subtract Amount from the Result.","Subtract Amount from the Result."
+"Show decimal zeros","Show decimal zeros"
+"Replace zero price","Replace zero price"
+"Text of replace","Text of replace"
+"Text instead of zero price.","Text instead of zero price."
