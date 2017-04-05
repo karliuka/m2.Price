@@ -154,7 +154,7 @@ class Currency
         return $price;
     }
     
-     /**
+    /**
      * Formats a number as a currency string
      * 
      * @param float $price
@@ -165,7 +165,7 @@ class Currency
 		return sprintf('%0.4F', $price);
     }
        
-     /**
+    /**
      * Retrieve the price with a subtracted amount
      * 
      * @param float $price
