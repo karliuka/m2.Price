@@ -180,7 +180,7 @@ class Data extends AbstractHelper
     public function getSwedishFraction()
     {
         $fraction = $this->_getConfig(self::XML_SWEDISH_ROUND_FRACTION);
-		return (is_float($fraction) && $fraction > 0)
+		return ($fraction > 0)
 			? $fraction 
 			: 0.05;        
     }
