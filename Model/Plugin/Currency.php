@@ -42,6 +42,21 @@ class Currency
 	const TYPE_FLOOR = 'floor';
 	
     /**
+     * Swedish Round fractions up constant
+     */	
+	const TYPE_SWEDISH_CEIL = 'swedish_ceil';
+	
+    /**
+     * Swedish Round fractions
+     */	
+	const TYPE_SWEDISH_ROUND = 'swedish_round';
+	
+    /**
+     * Swedish Round fractions down constant
+     */	
+	const TYPE_SWEDISH_FLOOR = 'swedish_floor';
+	
+    /**
      * Store Config
      *
      * @var Faonni\Price\Helper\Data
@@ -189,15 +204,26 @@ class Currency
      */
     protected function round($price)
     {
-		$precision = $this->_helper->getPrecision();
-				
-		switch ($this->_helper->getRoundType()) {
+		$helper = $this->_helper;
+		$fraction = $helper->getSwedishFraction();
+		$precision = $helper->getPrecision();
+		
+		switch ($helper->getRoundType()) {
 			case self::TYPE_CEIL:
 				$price = round($price, $precision, PHP_ROUND_HALF_UP);
 				break;
 			case self::TYPE_FLOOR:
 				$price = round($price, $precision, PHP_ROUND_HALF_DOWN);
 				break;
+			case self::TYPE_SWEDISH_CEIL:
+				$price = ceil($price/$fraction) * $fraction;
+				break;
+			case self::TYPE_SWEDISH_ROUND:
+				$price = round($price/$fraction) * $fraction;
+				break;
+			case self::TYPE_SWEDISH_FLOOR:
+				$price = floor($price/$fraction) * $fraction;
+				break;				
 		}
 		return $this->format($price);
     }

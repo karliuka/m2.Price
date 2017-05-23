@@ -73,6 +73,11 @@ class Data extends AbstractHelper
      * Text of replace config path
      */
     const XML_ZERO_PRICE_TEXT = 'currency/price/zero_price_text'; 
+	
+    /**
+     * swedish rounding fraction config path
+     */
+    const XML_SWEDISH_ROUND_FRACTION = 'currency/price/swedish_fraction'; 	
                               	
     /**
      * Check round price convert functionality should be enabled
@@ -166,7 +171,20 @@ class Data extends AbstractHelper
     {
         return $this->_getConfig(self::XML_ZERO_PRICE_TEXT);
     }
-        
+	
+    /**
+     * Retrieve swedish round fraction
+     *
+     * @return int
+     */
+    public function getSwedishFraction()
+    {
+        $fraction = $this->_getConfig(self::XML_SWEDISH_ROUND_FRACTION);
+		return (is_float($fraction) && $fraction > 0)
+			? $fraction 
+			: 0.05;        
+    }
+	
     /**
      * Retrieve store configuration data
      *

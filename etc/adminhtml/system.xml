@@ -53,6 +53,13 @@
 					<depends>
 						<field id="enabled">1</field>
 					</depends>					
+                </field>
+                <field id="swedish_fraction" translate="label comment" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Swedish Fraction</label>
+					<comment><![CDATA[0.05, 0.10, 0.25 and etc]]></comment>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>					
                 </field> 				
                 <field id="subtract" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Subtract Amount</label>
