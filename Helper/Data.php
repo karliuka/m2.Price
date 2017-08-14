@@ -175,7 +175,7 @@ class Data extends AbstractHelper
     /**
      * Retrieve swedish round fraction
      *
-     * @return int
+     * @return float
      */
     public function getSwedishFraction()
     {
