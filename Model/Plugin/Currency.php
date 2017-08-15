@@ -57,7 +57,7 @@ class Currency
 	const TYPE_SWEDISH_FLOOR = 'swedish_floor';
 	
     /**
-     * Store Config
+     * Round Price helper
      *
      * @var Faonni\Price\Helper\Data
      */
@@ -117,20 +117,9 @@ class Currency
     public function aroundFormatTxt(
 		CurrencyModel $subject, $proceed, $price, $options = []
 	) {
-        $price = $this->getNumber($price);
-
-        if (!$this->_helper->isShowDecimalZero() && 
-			intval($price) == $price) {
-            $options['precision'] = 0;
-        }        
-        
-        if (!$this->_helper->isReplaceZeroPrice() || 0 < $price) {
-			return $proceed($price, $options);
-		}		
-        return sprintf(
-			'<span class="price-free">%s</span>', 
-			$this->_helper->getZeroPriceText()
-		);		
+        return ($this->_helper->isEnabled()) 
+            ? $this->formatTxt($proceed, $price, $options)
+            : $proceed($price, $options);		
     }
     
     /**
@@ -153,6 +142,32 @@ class Currency
 			}
 		}		
 		return true;
+    }
+    
+    /**
+     * Retrieve the formatted price
+     * 
+     * @param object $proceed callable	 
+     * @param float $price
+     * @param array $options
+     * @return string
+     */
+    protected function formatTxt($proceed, $price, $options = []) 
+    {
+        $price = $this->getNumber($price);
+
+        if (!$this->_helper->isShowDecimalZero() && 
+			intval($price) == $price) {
+            $options['precision'] = 0;
+        }        
+        
+        if (!$this->_helper->isReplaceZeroPrice() || 0 < $price) {
+			return $proceed($price, $options);
+		}		
+        return sprintf(
+			'<span class="price-free">%s</span>', 
+			$this->_helper->getZeroPriceText()
+		);		
     }
     
     /**
