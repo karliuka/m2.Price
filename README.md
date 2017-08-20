@@ -43,4 +43,4 @@ The idea of adding a rounding algorithm 'Swedish rounding' is suggested by [ScIT
 	php bin/magento setup:static-content:deploy
     ```
 
-* [Rounding Price from Magento](https://github.com/karliuka/m1.RoundPriceConvert)
+* [Rounding Price from Magento](https://github.com/karliuka/m1.Price)
