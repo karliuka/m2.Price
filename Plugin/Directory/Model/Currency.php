@@ -8,7 +8,7 @@ namespace Faonni\Price\Plugin\Directory\Model;
 
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Locale\FormatInterface;
-use Magento\Directory\Model\Currency as CurrencyModel;
+use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
 
 /**
@@ -72,14 +72,14 @@ class Currency
     /**
      * Convert and round price to currency format
      *
-     * @param object $subject CurrencyModel
+     * @param object $subject CurrencyInterface
      * @param object $proceed callable	 
      * @param float $price
      * @param mixed $toCurrency
      * @return float
      */
     public function aroundConvert(
-		CurrencyModel $subject, $proceed, $price, $toCurrency = null
+		CurrencyInterface $subject, $proceed, $price, $toCurrency = null
 	) {
         $price = $proceed($price, $toCurrency);
         
@@ -93,14 +93,14 @@ class Currency
     /**
      * Retrieve the formatted price
      * 
-     * @param object $subject CurrencyModel
+     * @param object $subject CurrencyInterface
      * @param object $proceed callable	 
      * @param float $price
      * @param array $options
      * @return string
      */
     public function aroundFormatTxt(
-		CurrencyModel $subject, $proceed, $price, $options = []
+		CurrencyInterface $subject, $proceed, $price, $options = []
 	) {
         return ($this->_helper->isEnabled()) 
             ? $this->formatTxt($proceed, $price, $options)
@@ -110,11 +110,11 @@ class Currency
     /**
      * Check round price convert functionality should be enabled
      *
-     * @param object $subject CurrencyModel
+     * @param object $subject CurrencyInterface
      * @param mixed $toCurrency
      * @return bool
      */
-    public function isRoundEnabled(CurrencyModel $currency, $toCurrency)
+    public function isRoundEnabled(CurrencyInterface $currency, $toCurrency)
     {
 		if (!$this->_helper->isEnabled()) {
 			return false;
@@ -239,7 +239,7 @@ class Currency
     {
         if (is_string($toCurrency)) {
             $code = $toCurrency;
-        } elseif ($toCurrency instanceof CurrencyModel) {
+        } elseif ($toCurrency instanceof CurrencyInterface) {
             $code = $toCurrency->getCurrencyCode();
         } else {
             throw new InputException(
