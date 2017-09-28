@@ -4,7 +4,7 @@
  * 
  * See COPYING.txt for license details.
  */
-namespace Faonni\Price\Model\Plugin;
+namespace Faonni\Price\Plugin\Directory\Model;
 
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Locale\FormatInterface;
