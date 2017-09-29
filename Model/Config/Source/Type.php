@@ -7,7 +7,7 @@
 namespace Faonni\Price\Model\Config\Source;
 
 use Magento\Framework\Option\ArrayInterface;
-use Faonni\Price\Model\Plugin\Currency;
+use Faonni\Price\Plugin\Directory\Model\Currency;
 
 /**
  * Source of option values in a form of value-label pairs
