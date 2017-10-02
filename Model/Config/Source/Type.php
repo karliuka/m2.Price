@@ -10,7 +10,7 @@ use Magento\Framework\Option\ArrayInterface;
 use Faonni\Price\Plugin\Directory\Model\Currency;
 
 /**
- * Source of option values in a form of value-label pairs
+ * Round Type Source Option
  */
 class Type implements ArrayInterface
 {

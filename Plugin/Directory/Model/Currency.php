@@ -12,37 +12,37 @@ use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
 
 /**
- * Class Currency model for convert and round price value
+ * Currency Plugin
  */
 class Currency
 {
     /**
-     * Round fractions up constant
+     * Round Fractions up
      */	
 	const TYPE_CEIL = 'ceil';
 	
     /**
-     * Round fractions down constant
+     * Round Fractions Down
      */	
 	const TYPE_FLOOR = 'floor';
 	
     /**
-     * Swedish Round fractions up constant
+     * Swedish Round Fractions Up
      */	
 	const TYPE_SWEDISH_CEIL = 'swedish_ceil';
 	
     /**
-     * Swedish Round fractions
+     * Swedish Round Fractions
      */	
 	const TYPE_SWEDISH_ROUND = 'swedish_round';
 	
     /**
-     * Swedish Round fractions down constant
+     * Swedish Round Fractions Down
      */	
 	const TYPE_SWEDISH_FLOOR = 'swedish_floor';
 	
     /**
-     * Round Price helper
+     * Round Price Helper
      *
      * @var Faonni\Price\Helper\Data
      */
@@ -56,7 +56,7 @@ class Currency
     protected $_localeFormat;    
 	
     /**
-     * Initialize plugin
+     * Initialize Plugin
      * 
      * @param FormatInterface $localeFormat
      * @param PriceHelper $helper
@@ -70,7 +70,7 @@ class Currency
     }
 	
     /**
-     * Convert and round price to currency format
+     * Convert and Round Price to Currency Format
      *
      * @param object $subject CurrencyInterface
      * @param object $proceed callable	 
@@ -91,7 +91,7 @@ class Currency
     }
 
     /**
-     * Retrieve the formatted price
+     * Retrieve the Formatted Price
      * 
      * @param object $subject CurrencyInterface
      * @param object $proceed callable	 
@@ -108,7 +108,7 @@ class Currency
     }
     
     /**
-     * Check round price convert functionality should be enabled
+     * Check Round Price Convert Functionality Should be Enabled
      *
      * @param object $subject CurrencyInterface
      * @param mixed $toCurrency
@@ -130,7 +130,7 @@ class Currency
     }
     
     /**
-     * Retrieve the formatted price
+     * Retrieve the Formatted Price
      * 
      * @param object $proceed callable	 
      * @param float $price
@@ -156,7 +156,7 @@ class Currency
     }
     
     /**
-     * Retrieve the first found number from an string
+     * Retrieve the First Found Number from an String
      *
      * @param string|float|int $price
      * @return float|null
@@ -170,7 +170,7 @@ class Currency
     }
     
     /**
-     * Formats a number as a currency string
+     * Formats a Number as a Currency String
      * 
      * @param float $price
      * @return string
@@ -181,7 +181,7 @@ class Currency
     }
        
     /**
-     * Retrieve the price with a subtracted amount
+     * Retrieve the Price With a Subtracted Amount
      * 
      * @param float $price
      * @return float
@@ -197,7 +197,7 @@ class Currency
     }
                
     /**
-     * Retrieve the rounded price
+     * Retrieve the Rounded Price
      * 
      * @param float $price
      * @return float
@@ -229,7 +229,7 @@ class Currency
     }
     	
     /**
-     * Retrieve currency code
+     * Retrieve Currency Code
      * 
      * @param mixed $toCurrency
      * @return string

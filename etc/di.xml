@@ -9,7 +9,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
 	<!--
-	plugin for a class Magento\Directory\Model\Currency
+	plugin
 	-->		
     <type name="Magento\Directory\Model\Currency">
 		<plugin name="Faonni_Price" type="Faonni\Price\Plugin\Directory\Model\Currency" />
