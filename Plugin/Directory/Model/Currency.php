@@ -10,6 +10,7 @@ use Magento\Framework\Exception\InputException;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
+use Faonni\Price\Model\Math;
 
 /**
  * Currency Plugin
@@ -17,7 +18,7 @@ use Faonni\Price\Helper\Data as PriceHelper;
 class Currency
 {
     /**
-     * Round Fractions up
+     * Round Fractions Up
      */	
 	const TYPE_CEIL = 'ceil';
 	
@@ -49,6 +50,13 @@ class Currency
     protected $_helper;
     
     /**
+     * Math Processor
+     * 
+     * @var \Faonni\Price\Model\Math
+     */
+    protected $_math;     
+    
+    /**
      * Locale Format
      * 
      * @var \Magento\Framework\Locale\FormatInterface
@@ -57,14 +65,17 @@ class Currency
 	
     /**
      * Initialize Plugin
-     * 
+     *
+     * @param Math $math     
      * @param FormatInterface $localeFormat
      * @param PriceHelper $helper
      */
     public function __construct(
+        Math $math,
         FormatInterface $localeFormat,
         PriceHelper $helper
     ) {
+        $this->_math = $math;
         $this->_localeFormat = $localeFormat;
         $this->_helper = $helper;
     }
@@ -204,28 +215,9 @@ class Currency
      */
     protected function round($price)
     {
-		$helper = $this->_helper;
-		$fraction = $helper->getSwedishFraction();
-		$precision = $helper->getPrecision();
-		
-		switch ($helper->getRoundType()) {
-			case self::TYPE_CEIL:
-				$price = round($price, $precision, PHP_ROUND_HALF_UP);
-				break;
-			case self::TYPE_FLOOR:
-				$price = round($price, $precision, PHP_ROUND_HALF_DOWN);
-				break;
-			case self::TYPE_SWEDISH_CEIL:
-				$price = ceil($price/$fraction) * $fraction;
-				break;
-			case self::TYPE_SWEDISH_ROUND:
-				$price = round($price/$fraction) * $fraction;
-				break;
-			case self::TYPE_SWEDISH_FLOOR:
-				$price = floor($price/$fraction) * $fraction;
-				break;				
-		}
-		return $this->format($price);
+		return $this->format(
+			$this->_math->round($price)
+		);
     }
     	
     /**

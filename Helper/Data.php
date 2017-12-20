@@ -62,8 +62,13 @@ class Data extends AbstractHelper
     /**
      * Swedish Rounding Fraction Config Path
      */
-    const XML_SWEDISH_ROUND_FRACTION = 'currency/price/swedish_fraction'; 	
-                              	
+    const XML_SWEDISH_ROUND_FRACTION = 'currency/price/swedish_fraction'; 
+    
+    /**
+     * Rounding Discount Config Path
+     */
+    const XML_ROUND_DISCOUNT = 'currency/price/discount';  
+    
     /**
      * Check Round Price Convert Functionality Should be Enabled
      *
@@ -112,8 +117,18 @@ class Data extends AbstractHelper
     public function isRoundingBasePrice()
     {
         return $this->_getConfig(self::XML_ROUND_BASE_PRICE);
-    }    
-	
+    }
+    
+    /**
+     * Check Rounding Discount
+     *
+     * @return string
+     */
+    public function isRoundingDiscount()
+    {
+        return $this->_getConfig(self::XML_ROUND_DISCOUNT);
+    } 
+    
     /**
      * Retrieve Rounding Type
      *
