@@ -18,31 +18,6 @@ use Faonni\Price\Model\Math;
 class Currency
 {
     /**
-     * Round Fractions Up
-     */	
-	const TYPE_CEIL = 'ceil';
-	
-    /**
-     * Round Fractions Down
-     */	
-	const TYPE_FLOOR = 'floor';
-	
-    /**
-     * Swedish Round Fractions Up
-     */	
-	const TYPE_SWEDISH_CEIL = 'swedish_ceil';
-	
-    /**
-     * Swedish Round Fractions
-     */	
-	const TYPE_SWEDISH_ROUND = 'swedish_round';
-	
-    /**
-     * Swedish Round Fractions Down
-     */	
-	const TYPE_SWEDISH_FLOOR = 'swedish_floor';
-	
-    /**
      * Round Price Helper
      *
      * @var Faonni\Price\Helper\Data
