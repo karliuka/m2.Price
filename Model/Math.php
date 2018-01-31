@@ -39,6 +39,21 @@ class Math
 	const TYPE_SWEDISH_FLOOR = 'swedish_floor';
 	
     /**
+     * Excel Round Fractions Up
+     */	
+	const TYPE_EXCEL_CEIL = 'excel_ceil';
+	
+    /**
+     * Excel Round Fractions
+     */	
+	const TYPE_EXCEL_ROUND = 'excel_round';	
+	
+    /**
+     * Excel Round Fractions Down
+     */	
+	const TYPE_EXCEL_FLOOR = 'excel_floor';	
+	
+    /**
      * Round Price Helper
      *
      * @var Faonni\Price\Helper\Data
@@ -67,27 +82,13 @@ class Math
 		$helper = $this->_helper;
 		$fraction = $helper->getSwedishFraction();
 		$precision = $helper->getPrecision();
+		$multiplier = pow(10, abs($precision));
 		switch ($helper->getRoundType()) {
 			case self::TYPE_CEIL:
-                    
-                    if ($precision < 0):
-
-                        // Use ceil when precision < 1 (when rounding full currency, not cents)
-                        $price = $this->round_up($price, $precision);  
-                    else:
-                        $price = round($price, $precision, PHP_ROUND_HALF_UP);
-                    endif;
-
-				break;
+                $price = round($price, $precision, PHP_ROUND_HALF_UP);
+                break;
 			case self::TYPE_FLOOR:
-				
-                 if ($precision < 0):
-                        // Use ceil when precision < 1 (when rounding full currency, not cents)
-                        $price = $this->round_down($price, $precision);  
-                    else:
-                        $price = round($price, $precision, PHP_ROUND_HALF_DOWN);
-                    endif;
-
+				$price = round($price, $precision, PHP_ROUND_HALF_DOWN);
 				break;
 			case self::TYPE_SWEDISH_CEIL:
 				$price = ceil($price/$fraction) * $fraction;
@@ -97,33 +98,23 @@ class Math
 				break;
 			case self::TYPE_SWEDISH_FLOOR:
 				$price = floor($price/$fraction) * $fraction;
+				break;
+			case self::TYPE_EXCEL_CEIL:
+				$price = $precision < 0 
+					? ceil($price/$multiplier) * $multiplier 
+					: ceil($price * $multiplier)/$multiplier;
+				break;
+			case self::TYPE_EXCEL_ROUND:
+				$price = $precision < 0 
+					? round($price/$multiplier) * $multiplier 
+					: round($price * $multiplier)/$multiplier;
+				break;
+			case self::TYPE_EXCEL_FLOOR:
+				$price = $precision < 0 
+					? floor($price/$multiplier) * $multiplier 
+					: floor($price * $multiplier)/$multiplier;
 				break;				
 		}
 		return $price;
     }
-
-    /**
-     * Excel-like ROUNDUP function
-     * 
-     * @param float $value
-     * @return float
-     */
-
-    public static function round_up($value, $places) 
-    {
-        $mult = pow(10, abs($places)); 
-         return $places < 0 ?
-        ceil($value / $mult) * $mult :
-            ceil($value * $mult) / $mult;
-    }
-
-    public static function round_down($value, $places) 
-    {
-        $mult = pow(10, abs($places)); 
-         return $places < 0 ?
-        floor($value / $mult) * $mult :
-            floor($value * $mult) / $mult;
-    }
-
-
 }
