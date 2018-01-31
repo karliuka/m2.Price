@@ -47,7 +47,7 @@
 					<comment><![CDATA[The optional number of decimal digits to round to.]]></comment>
 					<depends>
 						<field id="enabled">1</field>
-                        <field id="type" separator=",">ceil,floor</field>
+                        <field id="type" separator=",">ceil,floor,excel_ceil,excel_round,excel_floor</field>
 					</depends>					
                 </field>
                 <field id="swedish_fraction" translate="label comment" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
