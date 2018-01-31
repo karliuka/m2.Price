@@ -67,13 +67,27 @@ class Math
 		$helper = $this->_helper;
 		$fraction = $helper->getSwedishFraction();
 		$precision = $helper->getPrecision();
-		
+		echo $price;
 		switch ($helper->getRoundType()) {
 			case self::TYPE_CEIL:
-				$price = round($price, $precision, PHP_ROUND_HALF_UP);
+                    
+                    if ($precision < 0):
+                        // Use ceil when precision < 1 (when rounding full currency, not cents)
+                        $price = $this->round_up($price, $precision);  
+                    else:
+                        $price = round($price, $precision, PHP_ROUND_HALF_UP);
+                    endif;
+
 				break;
 			case self::TYPE_FLOOR:
-				$price = round($price, $precision, PHP_ROUND_HALF_DOWN);
+				
+                 if ($precision < 0):
+                        // Use ceil when precision < 1 (when rounding full currency, not cents)
+                        $price = $this->round_down($price, $precision);  
+                    else:
+                        $price = round($price, $precision, PHP_ROUND_HALF_DOWN);
+                    endif;
+
 				break;
 			case self::TYPE_SWEDISH_CEIL:
 				$price = ceil($price/$fraction) * $fraction;
@@ -87,4 +101,29 @@ class Math
 		}
 		return $price;
     }
+
+    /**
+     * Excel-like ROUNDUP function
+     * 
+     * @param float $value
+     * @return float
+     */
+
+    public static function round_up($value, $places) 
+    {
+        $mult = pow(10, abs($places)); 
+         return $places < 0 ?
+        ceil($value / $mult) * $mult :
+            ceil($value * $mult) / $mult;
+    }
+
+    public static function round_down($value, $places) 
+    {
+        $mult = pow(10, abs($places)); 
+         return $places < 0 ?
+        floor($value / $mult) * $mult :
+            floor($value * $mult) / $mult;
+    }
+
+
 }
