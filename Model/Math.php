@@ -67,11 +67,11 @@ class Math
 		$helper = $this->_helper;
 		$fraction = $helper->getSwedishFraction();
 		$precision = $helper->getPrecision();
-		echo $price;
 		switch ($helper->getRoundType()) {
 			case self::TYPE_CEIL:
                     
                     if ($precision < 0):
+
                         // Use ceil when precision < 1 (when rounding full currency, not cents)
                         $price = $this->round_up($price, $precision);  
                     else:
