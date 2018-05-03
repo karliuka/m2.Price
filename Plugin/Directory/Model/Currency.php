@@ -132,7 +132,7 @@ class Currency
             $options['precision'] = 0;
         }        
         
-        if (!$this->_helper->isReplaceZeroPrice() || 0 < $price) {
+        if (!$this->_helper->isReplaceZeroPrice() || 0 != $price) {
 			return $proceed($price, $options);
 		}		
         return sprintf(
