@@ -1,7 +1,7 @@
 # Magento2 Rounding Price
 
 [![Total Downloads](https://poser.pugx.org/faonni/module-price/downloads)](https://packagist.org/packages/faonni/module-price)
-[![Latest Stable Version](https://poser.pugx.org/faonni/module-price/v/stable)](https://packagist.org/packages/faonni/module-price)	
+[![Latest Stable Version](https://poser.pugx.org/faonni/module-price/v/stable)](https://packagist.org/packages/faonni/module-price)
 
 Rounding Price to Prettier Value for Multi-Currency Stores.
 
@@ -50,8 +50,8 @@ The idea of adding a rounding algorithm 'Swedish rounding' is suggested by [ScIT
 3. Enter following commands to enable module:
 
     ```bash
-	php bin/magento setup:upgrade
-	php bin/magento setup:static-content:deploy
+    php bin/magento setup:upgrade
+    php bin/magento setup:static-content:deploy
     ```
 
 * [Rounding Price from Magento](https://github.com/karliuka/m1.Price)
