@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 namespace Faonni\Price\Observer;
@@ -17,31 +17,31 @@ use Faonni\Price\Model\Math;
 class ValidatorObserver implements ObserverInterface
 {
     /**
-	 * Round Price Helper
-	 *
-     * @var \Faonni\Price\Helper\Data
+     * Round Price Helper
+     *
+     * @var PriceHelper
      */
-    protected $_helper;
-    
+    protected $helper;
+
     /**
      * Math Processor
-     * 
-     * @var \Faonni\Price\Model\Math
+     *
+     * @var Math
      */
-    protected $_math;     
-	
+    protected $math;
+
     /**
      * Initialize Observer
-	 *
-     * @param Math $math	 
+     *
+     * @param Math $math
      * @param PriceHelper $helper
      */
     public function __construct(
-        Math $math,    
+        Math $math,
         PriceHelper $helper
     ) {
-        $this->_math = $math;        
-        $this->_helper = $helper;
+        $this->math = $math;
+        $this->helper = $helper;
     }
 
     /**
@@ -52,14 +52,14 @@ class ValidatorObserver implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        if (!$this->_helper->isEnabled() || 
-			!$this->_helper->isRoundingDiscount()
-		) {
+        if (!$this->helper->isEnabled() ||
+            !$this->helper->isRoundingDiscount()
+        ) {
             return;
         }
         $discount = $observer->getEvent()->getResult();
-		$discount->setAmount(
-			$this->_math->round($discount->getAmount())
-		);
+        $discount->setAmount(
+            $this->math->round($discount->getAmount())
+        );
     }
 }

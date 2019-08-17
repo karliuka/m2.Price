@@ -2,16 +2,14 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
-	<!--
-	plugin
-	-->		
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- plugin -->
     <type name="Magento\Directory\Model\Currency">
-		<plugin name="Faonni_Price" type="Faonni\Price\Plugin\Directory\Model\Currency" />
-    </type>  	
+        <plugin name="Faonni_Price" type="Faonni\Price\Plugin\Directory\Model\Currency"/>
+    </type>
 </config>

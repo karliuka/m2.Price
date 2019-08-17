@@ -2,15 +2,13 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-	<!--
-	event salesrule_validator_process
-	-->	 	
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- event salesrule_validator_process -->
     <event name="salesrule_validator_process">
         <observer name="faonni_price" instance="Faonni\Price\Observer\ValidatorObserver"/>
     </event>

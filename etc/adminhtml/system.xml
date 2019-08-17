@@ -2,16 +2,14 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-		<!--
-		price options section
-		-->	
+        <!-- price options section -->
         <section id="currency">
             <group id="price" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Price Options</label>
@@ -23,70 +21,70 @@
                     <label>Rounding Base Price</label>
                     <comment><![CDATA[When using Base Price on Storefront.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-					<depends>
-						<field id="enabled">1</field>
-					</depends>					
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
                 <field id="discount" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Rounding Discount</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-					<depends>
-						<field id="enabled">1</field>
-					</depends>					
-                </field>  				
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
                 <field id="type" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Rounding Type</label>
                     <comment><![CDATA[Round fractions up or Round fractions down.]]></comment>
                     <source_model>Faonni\Price\Model\Config\Source\Type</source_model>
-					<depends>
-						<field id="enabled">1</field>
-					</depends>					
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field> 
                 <field id="precision" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Precision</label>
-					<comment><![CDATA[The optional number of decimal digits to round to.]]></comment>
-					<depends>
-						<field id="enabled">1</field>
+                    <comment><![CDATA[The optional number of decimal digits to round to.]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
                         <field id="type" separator=",">ceil,floor,excel_ceil,excel_round,excel_floor</field>
-					</depends>					
+                    </depends>
                 </field>
                 <field id="swedish_fraction" translate="label comment" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Swedish Fraction</label>
-					<comment><![CDATA[0.05, 0.10, 0.20, 0.25 or 0.50 (drop-down in the next release)]]></comment>
-					<depends>
-						<field id="enabled">1</field>
+                    <comment><![CDATA[0.05, 0.10, 0.20, 0.25 or 0.50 (drop-down in the next release)]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
                         <field id="type" separator=",">swedish_ceil,swedish_round,swedish_floor</field>
-					</depends>					
-                </field> 				
+                    </depends>
+                </field>
                 <field id="subtract" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Subtract Amount</label>
                     <comment><![CDATA[Subtract Amount from the Result.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-					<depends>
-						<field id="enabled">1</field>
-					</depends>					
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
                 <field id="amount" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Amount</label>
-					<depends>
-						<field id="enabled">1</field>
-					</depends>					
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
                 <field id="show_decimal_zero" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show decimal zeros</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>				
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="replace_zero_price" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Replace zero price</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>				
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="zero_price_text" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Text of replace</label>
                     <comment><![CDATA[Text instead of zero price.]]></comment>
-					<depends>
-						<field id="replace_zero_price">1</field>
-					</depends>					
-                </field>                
+                    <depends>
+                        <field id="replace_zero_price">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>

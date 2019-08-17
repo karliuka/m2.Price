@@ -2,26 +2,26 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <currency>
             <price>
                 <enabled>1</enabled>
                 <base_price>0</base_price>
-				<discount>0</discount>
+                <discount>0</discount>
                 <type>floor</type>
-				<precision>0</precision>
+                <precision>0</precision>
                 <subtract>1</subtract>
-				<amount>0.01</amount>
-				<show_decimal_zero>1</show_decimal_zero>
-				<replace_zero_price>0</replace_zero_price>
-				<zero_price_text>free</zero_price_text>
-				<swedish_fraction>0.05</swedish_fraction>
+                <amount>0.01</amount>
+                <show_decimal_zero>1</show_decimal_zero>
+                <replace_zero_price>0</replace_zero_price>
+                <zero_price_text>free</zero_price_text>
+                <swedish_fraction>0.05</swedish_fraction>
             </price>
         </currency>
     </default>

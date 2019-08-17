@@ -2,16 +2,16 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Faonni_Price" setup_version="2.0.13">
         <sequence>
             <module name="Magento_Directory"/>
-			<module name="Magento_SalesRule"/>
+            <module name="Magento_SalesRule"/>
         </sequence>
-    </module>        
+    </module>
 </config>
