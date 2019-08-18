@@ -5,6 +5,10 @@
 
 Rounding Price to Prettier Value for Multi-Currency Stores.
 
+## Compatibility
+
+Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
+
 ### Base prices - US Dollar
 
 <img alt="Magento2 Rounding Price" src="https://karliuka.github.io/m2/price/base.png" style="width:100%"/>
