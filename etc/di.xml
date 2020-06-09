@@ -11,4 +11,7 @@
     <type name="Magento\Directory\Model\Currency">
         <plugin name="Faonni_Price" type="Faonni\Price\Plugin\Directory\Model\Currency"/>
     </type>
+    <type name="Magento\Catalog\Model\Product\Type\Price">
+        <plugin name="Faonni_Price" type="Faonni\Price\Plugin\Catalog\Model\Product\Type\PricePlugin"/>
+    </type>
 </config>
