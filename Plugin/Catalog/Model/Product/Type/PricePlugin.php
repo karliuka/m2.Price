@@ -46,8 +46,8 @@ class PricePlugin
      * Get base price with apply Group, Tier, Special prises
      *
      * @param Price $subject
-     * @param float|string $price
-     * @return float|string
+     * @param float $price
+     * @return float
      */
     public function afterGetBasePrice(
         Price $subject,

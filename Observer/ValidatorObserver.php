@@ -11,27 +11,26 @@ use Faonni\Price\Helper\Data as PriceHelper;
 use Faonni\Price\Model\Calculator;
 
 /**
- * SalesRule Validator Observer
+ * SalesRule validator observer
  */
 class ValidatorObserver implements ObserverInterface
 {
     /**
-     * Round Price Helper
+     * Round price helper
      *
      * @var PriceHelper
      */
     protected $helper;
 
     /**
-     * Price Calculator
+     * Price calculator
      *
      * @var Calculator
      */
     private $calculator;
 
-
     /**
-     * Initialize Observer
+     * Initialize observer
      *
      * @param Calculator $calculator
      * @param PriceHelper $helper
@@ -45,7 +44,7 @@ class ValidatorObserver implements ObserverInterface
     }
 
     /**
-     * Rounding Calculated Discount
+     * Rounding calculated discount
      *
      * @param Observer $observer
      * @return void
@@ -53,15 +52,16 @@ class ValidatorObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         if ($this->isRoundEnabled()) {
-            $discount = $observer->getEvent()->getResult();
-            $discount->setAmount(
-                $this->calculator->calculate($discount->getAmount())
+            /** @var \Magento\SalesRule\Model\Rule\Action\Discount\Data $discountData */
+            $discountData = $observer->getEvent()->getResult();
+            $discountData->setAmount(
+                $this->calculator->calculate($discountData->getAmount())
             );
         }
     }
 
     /**
-     * Check Round Price Convert Functionality Should be Enabled
+     * Check round price convert functionality should be enabled
      *
      * @return bool
      */

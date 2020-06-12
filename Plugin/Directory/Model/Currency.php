@@ -6,56 +6,56 @@
 namespace Faonni\Price\Plugin\Directory\Model;
 
 use Magento\Framework\Exception\InputException;
-use Magento\Framework\Locale\FormatInterface;
 use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
 use Faonni\Price\Model\Calculator;
+use Faonni\Price\Model\Formatter;
 
 /**
- * Currency Plugin
+ * Currency plugin
  */
 class Currency
 {
     /**
-     * Round Price Helper
+     * Round price helper
      *
      * @var PriceHelper
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * Price Calculator
+     * Price calculator
      *
      * @var Calculator
      */
     private $calculator;
 
     /**
-     * Locale Format
+     * Locale format
      *
-     * @var FormatInterface
+     * @var Formatter
      */
-    protected $localeFormat;
+    private $formatter;
 
     /**
-     * Initialize Plugin
+     * Initialize plugin
      *
      * @param Calculator $calculator
-     * @param FormatInterface $localeFormat
+     * @param Formatter $formatter
      * @param PriceHelper $helper
      */
     public function __construct(
         Calculator $calculator,
-        FormatInterface $localeFormat,
+        Formatter $formatter,
         PriceHelper $helper
     ) {
         $this->calculator = $calculator;
-        $this->localeFormat = $localeFormat;
+        $this->formatter = $formatter;
         $this->helper = $helper;
     }
 
     /**
-     * Convert and Round Price to Currency Format
+     * Convert and round price to currency format
      *
      * @param CurrencyInterface $subject
      * @param callable $proceed
@@ -78,12 +78,12 @@ class Currency
     }
 
     /**
-     * Retrieve the Formatted Price
+     * Retrieve the formatted price
      *
      * @param CurrencyInterface $subject
      * @param callable $proceed
      * @param float $price
-     * @param array $options
+     * @param mixed[] $options
      * @return string
      */
     public function aroundFormatTxt(
@@ -93,18 +93,18 @@ class Currency
         $options = []
     ) {
         return ($this->helper->isEnabled())
-            ? $this->formatTxt($proceed, $price, $options)
+            ? $this->formatter->format($proceed, $price, $options)
             : $proceed($price, $options);
     }
 
     /**
-     * Check Round Price Convert Functionality Should be Enabled
+     * Check round price convert functionality should be enabled
      *
      * @param CurrencyInterface $currency
      * @param mixed $toCurrency
      * @return bool
      */
-    public function isRoundEnabled(CurrencyInterface $currency, $toCurrency)
+    private function isRoundEnabled(CurrencyInterface $currency, $toCurrency)
     {
         if (!$this->helper->isEnabled()) {
             return false;
@@ -120,53 +120,13 @@ class Currency
     }
 
     /**
-     * Retrieve the Formatted Price
-     *
-     * @param callable $proceed
-     * @param float $price
-     * @param array $options
-     * @return string
-     */
-    protected function formatTxt(callable $proceed, $price, $options = [])
-    {
-        $price = $this->getNumber($price);
-
-        if (!$this->helper->isShowDecimalZero() &&
-            $price == (int)$price) {
-            $options['precision'] = 0;
-        }
-
-        if (!$this->helper->isReplaceZeroPrice() || 0 != $price) {
-            return $proceed($price, $options);
-        }
-        return sprintf(
-            '<span class="price-free">%s</span>',
-            $this->helper->getZeroPriceText()
-        );
-    }
-
-    /**
-     * Retrieve the First Found Number from an String
-     *
-     * @param float $price
-     * @return float
-     */
-    protected function getNumber($price)
-    {
-        if (!is_numeric($price)) {
-            return (float)$this->localeFormat->getNumber($price);
-        }
-        return $price;
-    }
-
-    /**
-     * Retrieve Currency Code
+     * Retrieve currency code
      *
      * @param mixed $toCurrency
      * @return string
      * @throws InputException
      */
-    protected function getCurrencyCode($toCurrency)
+    private function getCurrencyCode($toCurrency)
     {
         if (is_string($toCurrency)) {
             $code = $toCurrency;
