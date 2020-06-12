@@ -8,7 +8,7 @@ namespace Faonni\Price\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Math;
+use Faonni\Price\Model\Calculator;
 
 /**
  * SalesRule Validator Observer
@@ -23,23 +23,24 @@ class ValidatorObserver implements ObserverInterface
     protected $helper;
 
     /**
-     * Math Processor
+     * Price Calculator
      *
-     * @var Math
+     * @var Calculator
      */
-    protected $math;
+    private $calculator;
+
 
     /**
      * Initialize Observer
      *
-     * @param Math $math
+     * @param Calculator $calculator
      * @param PriceHelper $helper
      */
     public function __construct(
-        Math $math,
+        Calculator $calculator,
         PriceHelper $helper
     ) {
-        $this->math = $math;
+        $this->calculator = $calculator;
         $this->helper = $helper;
     }
 
@@ -51,14 +52,21 @@ class ValidatorObserver implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        if (!$this->helper->isEnabled() ||
-            !$this->helper->isRoundingDiscount()
-        ) {
-            return;
+        if ($this->isRoundEnabled()) {
+            $discount = $observer->getEvent()->getResult();
+            $discount->setAmount(
+                $this->calculator->calculate($discount->getAmount())
+            );
         }
-        $discount = $observer->getEvent()->getResult();
-        $discount->setAmount(
-            $this->math->round($discount->getAmount())
-        );
+    }
+
+    /**
+     * Check Round Price Convert Functionality Should be Enabled
+     *
+     * @return bool
+     */
+    private function isRoundEnabled()
+    {
+        return $this->helper->isEnabled() && $this->helper->isRoundingDiscount();
     }
 }

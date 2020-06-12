@@ -7,7 +7,7 @@ namespace Faonni\Price\Plugin\Catalog\Model\Product\Type;
 
 use Magento\Catalog\Model\Product\Type\Price;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Math;
+use Faonni\Price\Model\Calculator;
 
 /**
  * Currency Price Plugin
@@ -19,26 +19,26 @@ class PricePlugin
      *
      * @var PriceHelper
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * Math Processor
+     * Price Calculator
      *
-     * @var Math
+     * @var Calculator
      */
-    protected $math;
+    private $calculator;
 
     /**
      * Initialize Plugin
      *
-     * @param Math $math
+     * @param Calculator $calculator
      * @param PriceHelper $helper
      */
     public function __construct(
-        Math $math,
+        Calculator $calculator,
         PriceHelper $helper
     ) {
-        $this->math = $math;
+        $this->calculator = $calculator;
         $this->helper = $helper;
     }
 
@@ -54,8 +54,7 @@ class PricePlugin
         $price
     ) {
         if ($this->isRoundEnabled()) {
-            $price = $this->round($price);
-            $price = $this->subtract($price);
+            $price = $this->calculator->calculate($price);
         }
         return $price;
     }
@@ -65,54 +64,8 @@ class PricePlugin
      *
      * @return bool
      */
-    public function isRoundEnabled()
+    private function isRoundEnabled()
     {
-        if (!$this->helper->isEnabled()) {
-            return false;
-        }
-        if (!$this->helper->isRoundingBasePrice()) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Formats a Number as a Currency String
-     *
-     * @param float $price
-     * @return float
-     */
-    protected function format($price)
-    {
-        return (float)sprintf('%0.4F', $price);
-    }
-
-    /**
-     * Retrieve the Price With a Subtracted Amount
-     *
-     * @param float $price
-     * @return float|string
-     */
-    protected function subtract($price)
-    {
-        if ($this->helper->isSubtract()) {
-            $price = $price - $this->helper->getAmount();
-        }
-        return (0 < $price)
-            ? $price
-            : $this->format(0);
-    }
-
-    /**
-     * Retrieve the Rounded Price
-     *
-     * @param float $price
-     * @return float
-     */
-    protected function round($price)
-    {
-        return $this->format(
-            $this->math->round($price)
-        );
+        return $this->helper->isEnabled() && $this->helper->isRoundingBasePrice();
     }
 }

@@ -9,7 +9,7 @@ use Magento\Framework\Exception\InputException;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Math;
+use Faonni\Price\Model\Calculator;
 
 /**
  * Currency Plugin
@@ -24,11 +24,11 @@ class Currency
     protected $helper;
 
     /**
-     * Math Processor
+     * Price Calculator
      *
-     * @var Math
+     * @var Calculator
      */
-    protected $math;
+    private $calculator;
 
     /**
      * Locale Format
@@ -40,16 +40,16 @@ class Currency
     /**
      * Initialize Plugin
      *
-     * @param Math $math
+     * @param Calculator $calculator
      * @param FormatInterface $localeFormat
      * @param PriceHelper $helper
      */
     public function __construct(
-        Math $math,
+        Calculator $calculator,
         FormatInterface $localeFormat,
         PriceHelper $helper
     ) {
-        $this->math = $math;
+        $this->calculator = $calculator;
         $this->localeFormat = $localeFormat;
         $this->helper = $helper;
     }
@@ -72,8 +72,7 @@ class Currency
         $price = $proceed($price, $toCurrency);
 
         if ($this->isRoundEnabled($subject, $toCurrency)) {
-            $price = $this->round($price);
-            $price = $this->subtract($price);
+            $price = $this->calculator->calculate($price);
         }
         return $price;
     }
@@ -133,7 +132,7 @@ class Currency
         $price = $this->getNumber($price);
 
         if (!$this->helper->isShowDecimalZero() &&
-            intval($price) == $price) {
+            $price == (int)$price) {
             $options['precision'] = 0;
         }
 
@@ -158,46 +157,6 @@ class Currency
             return (float)$this->localeFormat->getNumber($price);
         }
         return $price;
-    }
-
-    /**
-     * Formats a Number as a Currency String
-     *
-     * @param float $price
-     * @return float
-     */
-    protected function format($price)
-    {
-        return (float)sprintf('%0.4F', $price);
-    }
-
-    /**
-     * Retrieve the Price With a Subtracted Amount
-     *
-     * @param float $price
-     * @return float|string
-     */
-    protected function subtract($price)
-    {
-        if ($this->helper->isSubtract()) {
-            $price = $price - $this->helper->getAmount();
-        }
-        return (0 < $price)
-            ? $price
-            : $this->format(0);
-    }
-
-    /**
-     * Retrieve the Rounded Price
-     *
-     * @param float $price
-     * @return float
-     */
-    protected function round($price)
-    {
-        return $this->format(
-            $this->math->round($price)
-        );
     }
 
     /**
