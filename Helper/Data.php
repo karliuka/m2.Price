@@ -71,81 +71,89 @@ class Data extends AbstractHelper
     /**
      * Check Round Price Convert Functionality Should be Enabled
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_ROUND_ENABLED);
+        return $this->isSetFlag(self::XML_ROUND_ENABLED, $storeId);
     }
 
     /**
      * Check Subtract 0.01 Functionality Should be Enabled
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isSubtract()
+    public function isSubtract($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_ROUND_SUBTRACT);
+        return $this->isSetFlag(self::XML_ROUND_SUBTRACT, $storeId);
     }
 
     /**
      * Check Decimal Zero Functionality Should be Enabled
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isShowDecimalZero()
+    public function isShowDecimalZero($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_DECIMAL_ZERO);
+        return $this->isSetFlag(self::XML_DECIMAL_ZERO, $storeId);
     }
 
     /**
      * Check Replace Zero Price Functionality Should be Enabled
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isReplaceZeroPrice()
+    public function isReplaceZeroPrice($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_ZERO_PRICE);
+        return $this->isSetFlag(self::XML_ZERO_PRICE, $storeId);
     }
 
     /**
      * Check Rounding Base Price
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isRoundingBasePrice()
+    public function isRoundingBasePrice($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_ROUND_BASE_PRICE);
+        return $this->isSetFlag(self::XML_ROUND_BASE_PRICE, $storeId);
     }
 
     /**
      * Check Rounding Discount
      *
+     * @param string $storeId
      * @return bool
      */
-    public function isRoundingDiscount()
+    public function isRoundingDiscount($storeId = null)
     {
-        return (bool)$this->_getConfig(self::XML_ROUND_DISCOUNT);
+        return $this->isSetFlag(self::XML_ROUND_DISCOUNT, $storeId);
     }
 
     /**
      * Retrieve Rounding Type
      *
+     * @param string $storeId
      * @return string
      */
-    public function getRoundType()
+    public function getRoundType($storeId = null)
     {
-        return (string)$this->_getConfig(self::XML_ROUND_TYPE);
+        return $this->getValue(self::XML_ROUND_TYPE, $storeId);
     }
 
     /**
      * Retrieve Subtract Amount
      *
+     * @param string $storeId
      * @return float|int
      */
-    public function getAmount()
+    public function getAmount($storeId = null)
     {
-        $amount = $this->_getConfig(self::XML_ROUND_AMOUNT);
+        $amount = $this->getValue(self::XML_ROUND_AMOUNT, $storeId);
         return is_numeric($amount)
             ? (float)$amount
             : 0;
@@ -154,48 +162,60 @@ class Data extends AbstractHelper
     /**
      * Retrieve Precision
      *
+     * @param string $storeId
      * @return int
      */
-    public function getPrecision()
+    public function getPrecision($storeId = null)
     {
-        return (int)$this->_getConfig(self::XML_ROUND_PRECISION);
+        return (int)$this->getValue(self::XML_ROUND_PRECISION, $storeId);
     }
 
     /**
      * Retrieve Text of Replace
      *
+     * @param string $storeId
      * @return string
      */
-    public function getZeroPriceText()
+    public function getZeroPriceText($storeId = null)
     {
-        return (string)$this->_getConfig(self::XML_ZERO_PRICE_TEXT);
+        return $this->getValue(self::XML_ZERO_PRICE_TEXT, $storeId);
     }
 
     /**
      * Retrieve Swedish Round Fraction
      *
+     * @param string $storeId
      * @return float
      */
-    public function getSwedishFraction()
+    public function getSwedishFraction($storeId = null)
     {
-        $fraction = (float)$this->_getConfig(self::XML_SWEDISH_ROUND_FRACTION);
+        $fraction = (float)$this->getValue(self::XML_SWEDISH_ROUND_FRACTION, $storeId);
         return ($fraction > 0)
             ? $fraction
             : 0.05;
     }
 
     /**
-     * Retrieve Store Configuration Data
+     * Retrieve config value by path and scope
      *
      * @param string $path
-     * @return string|null|bool
+     * @param string $storeId
+     * @return mixed
      */
-    protected function _getConfig($path)
+    protected function getValue($path, $storeId = null)
     {
-        return $this->scopeConfig
-            ->getValue(
-                $path,
-                ScopeInterface::SCOPE_STORE
-            );
+        return $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE, $storeId);
+    }
+
+    /**
+     * Retrieve config flag
+     *
+     * @param string $path
+     * @param string $storeId
+     * @return bool
+     */
+    protected function isSetFlag($path, $storeId = null)
+    {
+        return $this->scopeConfig->isSetFlag($path, ScopeInterface::SCOPE_STORE, $storeId);
     }
 }
