@@ -7,7 +7,7 @@ namespace Faonni\Price\Plugin\Catalog\Model\Product\Type;
 
 use Magento\Catalog\Model\Product\Type\Price;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Calculator;
+use Faonni\Price\Model\CalculatorInterface;
 
 /**
  * Currency Price Plugin
@@ -24,18 +24,18 @@ class PricePlugin
     /**
      * Price Calculator
      *
-     * @var Calculator
+     * @var CalculatorInterface
      */
     private $calculator;
 
     /**
      * Initialize Plugin
      *
-     * @param Calculator $calculator
+     * @param CalculatorInterface $calculator
      * @param PriceHelper $helper
      */
     public function __construct(
-        Calculator $calculator,
+        CalculatorInterface $calculator,
         PriceHelper $helper
     ) {
         $this->calculator = $calculator;

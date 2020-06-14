@@ -5,40 +5,21 @@
  */
 namespace Faonni\Price\Model\Calculator\RoundProcessor\Base;
 
-use Faonni\Price\Helper\Data as PriceHelper;
 use Faonni\Price\Model\Calculator\RoundProcessorInterface;
 
 /**
- * Ceil Round Processor
+ * Base ceil round processor
  */
-class CeilProcessor implements RoundProcessorInterface
+class CeilProcessor extends AbstractProcessor implements RoundProcessorInterface
 {
     /**
-     * Round Price Helper
-     *
-     * @var PriceHelper
-     */
-    private $helper;
-
-    /**
-     * Initialize Processor
-     *
-     * @param PriceHelper $helper
-     */
-    public function __construct(
-        PriceHelper $helper
-    ) {
-        $this->helper = $helper;
-    }
-
-    /**
-     * Retrieve the Rounded Price
+     * Retrieve the rounded price
      *
      * @param float $price
      * @return float
      */
     public function round($price)
     {
-        return round($price, $this->helper->getPrecision(), PHP_ROUND_HALF_UP);
+        return round($price, $this->getPrecision(), PHP_ROUND_HALF_UP);
     }
 }

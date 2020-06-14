@@ -8,7 +8,7 @@ namespace Faonni\Price\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Calculator;
+use Faonni\Price\Model\CalculatorInterface;
 
 /**
  * SalesRule validator observer
@@ -25,18 +25,18 @@ class ValidatorObserver implements ObserverInterface
     /**
      * Price calculator
      *
-     * @var Calculator
+     * @var CalculatorInterface
      */
     private $calculator;
 
     /**
      * Initialize observer
      *
-     * @param Calculator $calculator
+     * @param CalculatorInterface $calculator
      * @param PriceHelper $helper
      */
     public function __construct(
-        Calculator $calculator,
+        CalculatorInterface $calculator,
         PriceHelper $helper
     ) {
         $this->calculator = $calculator;

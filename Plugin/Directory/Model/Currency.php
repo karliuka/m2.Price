@@ -8,7 +8,7 @@ namespace Faonni\Price\Plugin\Directory\Model;
 use Magento\Framework\Exception\InputException;
 use Magento\Directory\Model\Currency as CurrencyInterface;
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Calculator;
+use Faonni\Price\Model\CalculatorInterface;
 use Faonni\Price\Model\Formatter;
 
 /**
@@ -26,7 +26,7 @@ class Currency
     /**
      * Price calculator
      *
-     * @var Calculator
+     * @var CalculatorInterface
      */
     private $calculator;
 
@@ -40,12 +40,12 @@ class Currency
     /**
      * Initialize plugin
      *
-     * @param Calculator $calculator
+     * @param CalculatorInterface $calculator
      * @param Formatter $formatter
      * @param PriceHelper $helper
      */
     public function __construct(
-        Calculator $calculator,
+        CalculatorInterface $calculator,
         Formatter $formatter,
         PriceHelper $helper
     ) {

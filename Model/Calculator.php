@@ -6,35 +6,35 @@
 namespace Faonni\Price\Model;
 
 use Faonni\Price\Helper\Data as PriceHelper;
-use Faonni\Price\Model\Calculator\RoundProcessorPool;
+use Faonni\Price\Model\Calculator\RoundProcessorPoolInterface;
 
 /**
- * Price Calculator
+ * Price calculator
  */
-class Calculator
+class Calculator implements CalculatorInterface
 {
     /**
-     * Round Price Helper
+     * Round price helper
      *
      * @var PriceHelper
      */
     private $helper;
 
     /**
-     * Round Processor Pool
+     * Round processor pool
      *
-     * @var RoundProcessorPool
+     * @var RoundProcessorPoolInterface
      */
     private $roundProcessorPool;
 
     /**
-     * Initialize Calculator
+     * Initialize calculator
      *
-     * @param RoundProcessorPool $roundProcessorPool
+     * @param RoundProcessorPoolInterface $roundProcessorPool
      * @param PriceHelper $helper
      */
     public function __construct(
-        RoundProcessorPool $roundProcessorPool,
+        RoundProcessorPoolInterface $roundProcessorPool,
         PriceHelper $helper
     ) {
         $this->roundProcessorPool = $roundProcessorPool;
@@ -42,7 +42,7 @@ class Calculator
     }
 
     /**
-     * Retrieve the Calculated Price
+     * Retrieve the calculated price
      *
      * @param float $price
      * @return float
@@ -53,7 +53,7 @@ class Calculator
     }
 
     /**
-     * Retrieve the Rounded Price
+     * Retrieve the rounded price
      *
      * @param float $price
      * @return float
@@ -67,7 +67,7 @@ class Calculator
     }
 
     /**
-     * Formats a Number as a Price String
+     * Formats a number as a price string
      *
      * @param float|int $price
      * @return float
@@ -78,7 +78,7 @@ class Calculator
     }
 
     /**
-     * Retrieve the Price With a Subtracted Amount
+     * Retrieve the price with a subtracted amount
      *
      * @param float $price
      * @return float

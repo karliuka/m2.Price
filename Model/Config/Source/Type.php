@@ -8,7 +8,7 @@ namespace Faonni\Price\Model\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Round Type Source Option
+ * Round type source option
  */
 class Type implements ArrayInterface
 {

@@ -5,48 +5,15 @@
  */
 namespace Faonni\Price\Model\Calculator\RoundProcessor\Excel;
 
-use Faonni\Price\Helper\Data as PriceHelper;
 use Faonni\Price\Model\Calculator\RoundProcessorInterface;
 
 /**
- * Excel Ceil Round Processor
+ * Excel ceil round processor
  */
-class CeilProcessor implements RoundProcessorInterface
+class CeilProcessor extends AbstractProcessor implements RoundProcessorInterface
 {
     /**
-     * Round Price Helper
-     *
-     * @var PriceHelper
-     */
-    private $helper;
-
-    /**
-     * Precision
-     *
-     * @var int
-     */
-    private $precision;
-
-    /**
-     * Multiplier
-     *
-     * @var int|float
-     */
-    private $multiplier;
-
-    /**
-     * Initialize Processor
-     *
-     * @param PriceHelper $helper
-     */
-    public function __construct(
-        PriceHelper $helper
-    ) {
-        $this->helper = $helper;
-    }
-
-    /**
-     * Retrieve the Rounded Price
+     * Retrieve the rounded price
      *
      * @param float $price
      * @return float
@@ -56,31 +23,5 @@ class CeilProcessor implements RoundProcessorInterface
         return $this->getPrecision() < 0
             ? ceil($price/$this->getMultiplier()) * $this->getMultiplier()
             : ceil($price * $this->getMultiplier())/$this->getMultiplier();
-    }
-
-    /**
-     * Retrieve Precision
-     *
-     * @return int
-     */
-    private function getPrecision()
-    {
-        if (null === $this->precision) {
-            $this->precision = $this->helper->getPrecision();
-        }
-        return $this->precision;
-    }
-
-    /**
-     * Retrieve Multiplier
-     *
-     * @return int|float
-     */
-    private function getMultiplier()
-    {
-        if (null === $this->multiplier) {
-            $this->multiplier = $this->helper->getPrecision();
-        }
-        return $this->multiplier;
     }
 }

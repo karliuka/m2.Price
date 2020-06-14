@@ -6,12 +6,12 @@
 namespace Faonni\Price\Model\Calculator;
 
 /**
- * Price Round Processor Interface
+ * Price round processor interface
  */
 interface RoundProcessorInterface
 {
     /**
-     * Retrieve the Rounded Price
+     * Retrieve the rounded price
      *
      * @param float $price
      * @return float
