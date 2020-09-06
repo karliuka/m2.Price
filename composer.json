@@ -2,7 +2,7 @@
     "name": "faonni/module-price",
     "description": "Rounding Price to Prettier Value for Multi-Currency Stores.",
     "type": "magento2-module",
-    "version": "2.0.15",
+    "version": "2.4.0",
     "authors": [{
         "name": "Karliuka Vitalii",
         "email": "karliuka.vitalii@gmail.com"
@@ -11,8 +11,8 @@
         "OSL-3.0"
     ],
     "require": {
-        "magento/module-directory": "100.0.*|100.1.*|100.2.*|100.3.*",
-        "magento/module-sales-rule": "100.0.*|100.1.*|101.0.*|101.1.*"
+        "magento/module-directory": "100.4.*",
+        "magento/module-sales-rule": "101.2.*"
     },
     "autoload": {
         "files": [
