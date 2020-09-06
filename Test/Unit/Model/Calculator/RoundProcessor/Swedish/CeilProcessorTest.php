@@ -63,7 +63,7 @@ class CeilProcessorTest extends TestCase
             ->method('getSwedishFraction')
             ->willReturn($fraction);
 
-        $this->assertEquals($result, (string)$this->processor->round($price));
+        $this->assertEquals($result, $this->processor->round($price));
     }
 
     /**
@@ -74,18 +74,18 @@ class CeilProcessorTest extends TestCase
     public function dataProviderRound()
     {
         return [
-            [0.05, 3.40, '3.40'],
-            [0.05, 3.41, '3.45'],
-            [0.05, 3.44, '3.45'],
-            [0.05, 3.45, '3.45'],
-            [0.05, 3.46, '3.50'],
-            [0.05, 3.47, '3.50'],
-            [0.10, 3.40, '3.40'],
-            [0.10, 3.41, '3.50'],
-            [0.10, 3.44, '3.50'],
-            [0.10, 3.45, '3.50'],
-            [0.10, 3.46, '3.50'],
-            [0.10, 3.47, '3.50'],
+            [0.05, 3.40, 3.40],
+            [0.05, 3.41, 3.45],
+            [0.05, 3.44, 3.45],
+            [0.05, 3.45, 3.45],
+            [0.05, 3.46, 3.50],
+            [0.05, 3.47, 3.50],
+            [0.10, 3.40, 3.40],
+            [0.10, 3.41, 3.50],
+            [0.10, 3.44, 3.50],
+            [0.10, 3.45, 3.50],
+            [0.10, 3.46, 3.50],
+            [0.10, 3.47, 3.50],
         ];
     }
 }
