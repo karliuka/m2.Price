@@ -7,7 +7,7 @@ Rounding Price to Prettier Value for Multi-Currency Stores.
 
 ## Compatibility
 
-Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
+Magento CE(EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x, 2.4.x
 
 ### Base prices - US Dollar
 
@@ -46,9 +46,18 @@ The idea of adding a rounding algorithm 'Swedish rounding' is suggested by [ScIT
 
 2. Enter following commands to install module:
 
+     For Magento CE (EE) 2.0.x, 2.1.x, 2.2.x, 2.3.x
+
     ```bash
-    composer require faonni/module-price
+    composer require faonni/module-price:2.0.*
     ```
+
+     For Magento CE (EE) 2.4.x
+
+    ```bash
+    composer require faonni/module-price:2.4.*
+    ```
+
    Wait while dependencies are updated.
 
 3. Enter following commands to enable module:
