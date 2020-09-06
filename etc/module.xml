@@ -9,8 +9,10 @@
     xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Faonni_Price" setup_version="2.4.1">
         <sequence>
+            <module name="Magento_Catalog"/>
             <module name="Magento_Directory"/>
             <module name="Magento_SalesRule"/>
+            <module name="Magento_Store"/>
         </sequence>
     </module>
 </config>
