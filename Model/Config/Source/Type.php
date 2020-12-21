@@ -27,7 +27,9 @@ class Type implements ArrayInterface
             ['value' => 'swedish_floor', 'label' => __('Swedish Round down')],
             ['value' => 'excel_ceil',  'label' => __('Excel Round up')],
             ['value' => 'excel_round', 'label' => __('Excel Round')],
-            ['value' => 'excel_floor', 'label' => __('Excel Round down')]
+            ['value' => 'excel_floor', 'label' => __('Excel Round down')],
+            ['value' => 'simple_ceil',  'label' => __('Simple Round up')],
+            ['value' => 'simple_floor', 'label' => __('Simple Round down')]
         ];
     }
 }
