@@ -29,6 +29,8 @@
                 <item name="excel_ceil" xsi:type="object">Faonni\Price\Model\Calculator\RoundProcessor\Excel\CeilProcessor\Proxy</item>
                 <item name="excel_round" xsi:type="object">Faonni\Price\Model\Calculator\RoundProcessor\Excel\RoundProcessor\Proxy</item>
                 <item name="excel_floor" xsi:type="object">Faonni\Price\Model\Calculator\RoundProcessor\Excel\FloorProcessor\Proxy</item>
+                <item name="simple_ceil" xsi:type="object">Faonni\Price\Model\Calculator\RoundProcessor\Simple\CeilProcessor\Proxy</item>
+                <item name="simple_floor" xsi:type="object">Faonni\Price\Model\Calculator\RoundProcessor\Simple\CeilProcessor\Proxy</item>
             </argument>
         </arguments>
     </type>
