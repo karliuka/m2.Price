@@ -129,14 +129,13 @@ class Currency
     private function getCurrencyCode($toCurrency)
     {
         if (is_string($toCurrency)) {
-            $code = $toCurrency;
-        } elseif ($toCurrency instanceof CurrencyInterface) {
-            $code = $toCurrency->getCurrencyCode();
-        } else {
-            throw new InputException(
-                __('Please correct the target currency.')
-            );
+            return $toCurrency;
         }
-        return $code;
+        if ($toCurrency instanceof CurrencyInterface) {
+            return $toCurrency->getCurrencyCode();
+        }
+        throw new InputException(
+            __('Please correct the target currency.')
+        );
     }
 }

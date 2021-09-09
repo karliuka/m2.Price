@@ -38,7 +38,7 @@
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
-                </field> 
+                </field>
                 <field id="precision" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Precision</label>
                     <comment><![CDATA[The optional number of decimal digits to round to.]]></comment>
