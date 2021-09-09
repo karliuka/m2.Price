@@ -53,7 +53,7 @@ class ValidatorObserver implements ObserverInterface
     {
         if ($this->isRoundEnabled()) {
             /** @var \Magento\SalesRule\Model\Rule\Action\Discount\Data $discountData */
-            $discountData = $observer->getEvent()->getResult();
+            $discountData = $observer->getEvent()->getData('result');
             $discountData->setAmount(
                 $this->calculator->calculate($discountData->getAmount())
             );
