@@ -5,30 +5,14 @@
  */
 namespace Faonni\Price\Test\Unit\Model\Calculator\RoundProcessor\Swedish;
 
-use PHPUnit\Framework\TestCase;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Faonni\Price\Test\Unit\Model\Calculator\RoundProcessor\AbstractTestCase;
 use Faonni\Price\Model\Calculator\RoundProcessor\Swedish\CeilProcessor as Processor;
-use Faonni\Price\Helper\Data as PriceHelper;
 
 /**
  * Test swedish ceil processor
  */
-class CeilProcessorTest extends TestCase
+class CeilProcessorTest extends AbstractTestCase
 {
-    /**
-     * Processor model
-     *
-     * @var Processor
-     */
-    protected $processor;
-
-    /**
-     * Price helper
-     *
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $helper;
-
     /**
      * Prepare test
      *
@@ -36,15 +20,7 @@ class CeilProcessorTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->helper = $this->getMockBuilder(PriceHelper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $objectManager = new ObjectManager($this);
-        $this->processor = $objectManager->getObject(
-            Processor::class,
-            ['helper' => $this->helper]
-        );
+        $this->prepare(Processor::class);
     }
 
     /**

@@ -5,30 +5,14 @@
  */
 namespace Faonni\Price\Test\Unit\Model\Calculator\RoundProcessor\Base;
 
-use PHPUnit\Framework\TestCase;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Faonni\Price\Test\Unit\Model\Calculator\RoundProcessor\AbstractTestCase;
 use Faonni\Price\Model\Calculator\RoundProcessor\Base\FloorProcessor as Processor;
-use Faonni\Price\Helper\Data as PriceHelper;
 
 /**
  * Test base floor processor
  */
-class FloorProcessorTest extends TestCase
+class FloorProcessorTest extends AbstractTestCase
 {
-    /**
-     * Processor model
-     *
-     * @var Processor
-     */
-    protected $processor;
-
-    /**
-     * Price helper
-     *
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $helper;
-
     /**
      * Prepare test
      *
@@ -36,15 +20,7 @@ class FloorProcessorTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->helper = $this->getMockBuilder(PriceHelper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $objectManager = new ObjectManager($this);
-        $this->processor = $objectManager->getObject(
-            Processor::class,
-            ['helper' => $this->helper]
-        );
+        $this->prepare(Processor::class);
     }
 
     /**
@@ -67,22 +43,13 @@ class FloorProcessorTest extends TestCase
     }
 
     /**
-     * Test round price data provider
+     * Data provider of round price test
      *
      * @return mixed[]
      */
     public function dataProviderRound()
     {
         return [
-            [-2, 1244, 1200],
-            [-2, 1245, 1200],
-            [-2, 1246, 1200],
-            [-2, 1254, 1300],
-            [-2, 1255, 1300],
-            [-2, 1256, 1300],
-            [-2, 1264, 1300],
-            [-2, 1265, 1300],
-            [-2, 1266, 1300],
             [-1, 1244, 1240],
             [-1, 1245, 1240],
             [-1, 1246, 1250],
@@ -92,6 +59,15 @@ class FloorProcessorTest extends TestCase
             [-1, 1264, 1260],
             [-1, 1265, 1260],
             [-1, 1266, 1270],
+            [-2, 1244, 1200],
+            [-2, 1245, 1200],
+            [-2, 1246, 1200],
+            [-2, 1254, 1300],
+            [-2, 1255, 1300],
+            [-2, 1256, 1300],
+            [-2, 1264, 1300],
+            [-2, 1265, 1300],
+            [-2, 1266, 1300],
             [0, 3.44, 3],
             [0, 3.45, 3],
             [0, 3.46, 3],

@@ -8,7 +8,7 @@ namespace Faonni\Price\Model\Calculator;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
- * Round processor pool
+ * Conplex round processor
  */
 class RoundProcessorPool implements RoundProcessorPoolInterface
 {

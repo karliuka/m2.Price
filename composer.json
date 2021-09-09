@@ -3,10 +3,12 @@
     "description": "Rounding Price to Prettier Value for Multi-Currency Stores.",
     "type": "magento2-module",
     "version": "2.4.2",
-    "authors": [{
-        "name": "Karliuka Vitalii",
-        "email": "karliuka.vitalii@gmail.com"
-    }],
+    "authors": [
+        {
+            "name": "Karliuka Vitalii",
+            "email": "karliuka.vitalii@gmail.com"
+        }
+    ],
     "license": [
         "OSL-3.0"
     ],
@@ -19,7 +21,7 @@
     },
     "autoload": {
         "files": [
-            "registration.php" 
+            "registration.php"
         ],
         "psr-4": {
             "Faonni\\Price\\": ""
